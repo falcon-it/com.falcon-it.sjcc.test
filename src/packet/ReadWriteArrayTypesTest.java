@@ -2,11 +2,13 @@ package packet;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import org.junit.Test;
 
 import packet.Registry.NotTypeIDException;
+import packet.binary.BinaryReader;
 import packet.binary.BinaryWriter;
 
 public class ReadWriteArrayTypesTest {
@@ -18,16 +20,17 @@ public class ReadWriteArrayTypesTest {
 		Registry reg = new Registry();
 		
 		int[] arr1 = new int[] {1, 3, 56, -456546};
-		int[][] arr2 = new int[][] {{454, 677, 44}, {-56, -6728, 0, 969, -456}};
+		int[][] arr2 = new int[][] {{454, 677, 44}, {-56, -6728, 0, 969, -456}, {}};
 		
 		Serialize s = reg.getSerializerByInstance(arr1);
 		s.write(os, arr1, reg, wr);
 		s.write(os, arr2, reg, wr);
 		
-		byte[] n = os.toByteArray();
+		ByteArrayInputStream is = new ByteArrayInputStream(os.toByteArray());
+		BinaryReader rd = new BinaryReader();
 		
-		int[] arr12 = arr1;
-		int[][] arr22 = arr2;
+		int[] arr12 = s.read(is, reg, rd);
+		int[][] arr22 = s.read(is, reg, rd);
 		for(int i = 0; i < arr12.length; ++i) {
 			assertTrue(arr12[i] == arr1[i]);
 		}
