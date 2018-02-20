@@ -8,20 +8,20 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import packet.Packet.DuplicateKeyException;
-import packet.Packet.KeyNotFoundException;
 import packet.Registry.DuplicateTypeIDException;
 import packet.Registry.DynamicIDTypeArrayException;
 import packet.Registry.IsMultiLevelArrayException;
 import packet.Registry.NotTypeIDException;
 import packet.binary.BinaryReader;
 import packet.binary.BinaryWriter;
+import utils.NamedList.DuplicateKeyException;
+import utils.NamedList.KeyNotFoundException;
 import utils.Pair;
 
 public class ReadWritePacketAttachArrTest {
 
 	@Test
-	public void test() throws DuplicateKeyException, NullPointerException, IsMultiLevelArrayException, DynamicIDTypeArrayException, CloneNotSupportedException, PacketIOException, NotTypeIDException, KeyNotFoundException, DuplicateTypeIDException {
+	public void test() throws NullPointerException, IsMultiLevelArrayException, DynamicIDTypeArrayException, CloneNotSupportedException, PacketIOException, NotTypeIDException, DuplicateTypeIDException, DuplicateKeyException, KeyNotFoundException {
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		BinaryWriter  wr = new BinaryWriter();
 		Registry reg = new Registry();

@@ -6,14 +6,13 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import packet.Packet.DuplicateKeyException;
 import packet.Registry.DynamicIDTypeArrayException;
 import packet.Registry.IsMultiLevelArrayException;
 
 public class PacketIDTest {
 
 	@Test
-	public void test() throws DuplicateKeyException, NullPointerException, IsMultiLevelArrayException, DynamicIDTypeArrayException {
+	public void test() throws NullPointerException, IsMultiLevelArrayException, DynamicIDTypeArrayException, utils.NamedList.DuplicateKeyException {
 		LinkedList<Integer> ids = new LinkedList<>();
 		Packet p = new Packet();
 		ids.add(p.calculateDynamicID());
